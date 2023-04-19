@@ -37,4 +37,4 @@ const createAd = () => {
 
 const simalarAds = new Array(ADS_COUNT).fill(null).map(() => createAd());
 
-console.log(simalarAds);
+export {simalarAds};
