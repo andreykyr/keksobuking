@@ -1,4 +1,6 @@
-import {getRandomIntInclusive, getRandomFloat, getRandomItems, addLeadingZero} from './util.js';
+console.log('loaded data.js file');
+import { getRandomIntInclusive, getRandomFloat, getRandomItems, addLeadingZero } from './util.js';
+
 
 const LINK_TEMPLATE = 'img/avatars/user{{xx}}.png';
 const HOUSING_TYPE = ['palace', 'flat', 'house', 'bungalow'];
@@ -37,4 +39,4 @@ const createAd = () => {
 
 const simalarAds = new Array(ADS_COUNT).fill(null).map(() => createAd());
 
-export {simalarAds};
+export { simalarAds };

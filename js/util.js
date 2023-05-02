@@ -1,3 +1,4 @@
+console.log('loaded util.js file');
 const getRandomIntInclusive = (min, max) => {
 
   if (min < 0 || max < 0) {
