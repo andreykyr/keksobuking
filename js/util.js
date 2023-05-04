@@ -41,4 +41,8 @@ const addLeadingZero = (number) => {
   return number < 10 ? '0' + String(number) : number;
 }
 
-export {getRandomIntInclusive, getRandomFloat, getRandomItems, addLeadingZero};
+const limitDecimalPlaces = (item, count) => {
+  return parseInt(item * 10 ** count) / 10 ** count;
+};
+
+export {getRandomIntInclusive, getRandomFloat, getRandomItems, addLeadingZero, limitDecimalPlaces};

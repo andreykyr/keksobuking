@@ -92,32 +92,6 @@ roomNumber.addEventListener('change', () => {
 
 console.log(roomNumber.options);
 
-//roomNumber.addEventListener('change', () => {
-//  switch (roomNumber.value) {
-//    case 1:
-//
-//      break;
-//
-//    case 2:
-//
-//      break;
-//
-//    case 3:
-//
-//      break;
-//
-//    case 100:
-//
-//      break;
-//
-//    default:
-//      break;
-//  }
-//
-//});
-
-//ADDRESS
-
 const address = form.querySelector('#address');
 address.setAttribute('disabled', 'true');
 

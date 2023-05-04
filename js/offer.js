@@ -1,3 +1,5 @@
+import { limitDecimalPlaces } from "./util.js";
+
 const translateHousingType = (data) => {
   switch (data) {
     case 'palace':
@@ -46,29 +48,38 @@ const addPhotosToDom = (photoContainer, data, card) => {
   photoContainer.appendChild(fragment);
 }
 
-const createOffer = (card, ad) => {
-  card.querySelector('.popup__title').textContent = ad.offer.title;
-  card.querySelector('.popup__text--address').textContent = ad.location.x + ', ' + ad.location.y;
-  card.querySelector('.popup__type').textContent = translateHousingType(ad.offer.type);
-  card.querySelector('.popup__description').textContent = ad.offer.description;
+const createOffer = (card, {author, offer, location}) => {
+  const title = card.querySelector('.popup__title');
+  (offer.title) ? (title.textContent = offer.title) : (title.classList.add('visually-hidden'));
+
+  const address = card.querySelector('.popup__text--address');
+  const x = limitDecimalPlaces(location.lat, 5);
+  const y = limitDecimalPlaces(location.lng, 5);
+  (location.lat || location.lng) ? (address.textContent = x + ', ' + y) : (address.classList.add('visually-hidden'));
+
+  const housingType = card.querySelector('.popup__type');
+  (offer.type) ? (housingType.textContent = translateHousingType(offer.type)) : (housingType.classList.add('visually-hidden'));
+
+  const description = card.querySelector('.popup__description');
+  (description) ? (description.textContent = offer.description) : (description.classList.add('visually-hidden'));
 
   const price = card.querySelector('.popup__text--price');
-  (ad.offer.price) ? (price.textContent = ad.offer.price + ' ₽/ночь') : (price.classList.add('visually-hidden'));
+  (offer.price) ? (price.textContent = offer.price + ' ₽/ночь') : (price.classList.add('visually-hidden'));
 
   const capacity = card.querySelector('.popup__text--capacity');
-  (ad.offer.rooms && ad.offer.guests) ? (capacity.textContent = ad.offer.rooms + ' комнаты для ' + ad.offer.guests + ' гостей') : (capacity.classList.add('visually-hidden'));
+  (offer.rooms && offer.guests) ? (capacity.textContent = offer.rooms + ' комнаты для ' + offer.guests + ' гостей') : (capacity.classList.add('visually-hidden'));
 
   const time = card.querySelector('.popup__text--time');
-  (ad.offer.checkin && ad.offer.checkout) ? (time.textContent = 'Заезд после ' + ad.offer.checkin + ', выезд до ' + ad.offer.checkout) : (time.classList.add('visually-hidden'));
+  (offer.checkin && offer.checkout) ? (time.textContent = 'Заезд после ' + offer.checkin + ', выезд до ' + offer.checkout) : (time.classList.add('visually-hidden'));
 
   const featuresList = card.querySelector('.popup__features');
-  (ad.offer.features) ? (addFeaturesToDom(featuresList, ad.offer.features)) : (featuresList.classList.add('visually-hidden'));
+  (offer.features) ? (addFeaturesToDom(featuresList, offer.features)) : (featuresList.classList.add('visually-hidden'));
 
   const photos = card.querySelector('.popup__photos');
-  addPhotosToDom(photos, ad.offer.photos, card);
+  addPhotosToDom(photos, offer.photos, card);
 
   const picture = card.querySelector('.popup__avatar');
-  picture.src = ad.author.avatar;
+  picture.src = author.avatar;
   picture.onerror = function() {
     picture.classList.add('visually-hidden');
   }
