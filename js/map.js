@@ -1,7 +1,8 @@
 console.log('loaded map.js file');
+//import { adsList } from './main.js';
 import { enablePage } from "./page-load.js";
 import { address } from './form.js';
-import { simalarAds } from "./data.js";
+//import { simalarAds } from "./data.js";
 import { createOffer } from "./offer.js";
 
 const LAT = 35.60684;
@@ -58,26 +59,33 @@ const pinIcon = L.icon({
   iconAnchor: [20, 40],
 });
 
-simalarAds.forEach (ad => {
-  const lat = ad.location.x;
-  const lng = ad.location.y;
+const offerTemplate = document.querySelector('#card').content.querySelector('.popup');
 
-  const marker = L.marker(
-    {
-      lat,
-      lng,
-    },
-    {
-      pinIcon,
-    },
-  );
-  const offerTemplate = document.querySelector('#card').content.querySelector('.popup');
-  const offerCard = offerTemplate.cloneNode(true);
-  createOffer(offerCard, ad);
-  const fragment = document.createDocumentFragment();
-  fragment.appendChild(offerCard);
+const createMarkers = (ads) => {
+  ads.forEach (ad => {
+    const lat = ad.location.lat;
+    const lng = ad.location.lng;
+    console.log(lat, lng);
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        pinIcon,
+      },
+    );
+    const offerCard = offerTemplate.cloneNode(true);
+    createOffer(offerCard, ad);
 
-  marker
-    .addTo(map)
-    .bindPopup(fragment);
-});
+    marker
+      .addTo(map)
+      .bindPopup(offerCard,
+        {
+          keepInView: true,
+        },
+      );
+  });
+}
+
+export {createMarkers};

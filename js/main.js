@@ -1,15 +1,14 @@
-console.log('loaded main.js file');
-
 import './offer.js';
 import './page-load.js';
-console.log('import disable in main');
-import './data.js';
-console.log('import data in main');
 import './form.js';
-console.log('import form in main');
 import './map.js';
-console.log('import map in main');
+import { createMarkers } from './map.js';
 
+const AD_COUNT = 10;
 
-
+fetch('https://23.javascript.pages.academy/keksobooking/data')
+  .then((response) => response.json())
+    .then((ads) => {
+      createMarkers(ads.slice(0, AD_COUNT));
+    });
 

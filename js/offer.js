@@ -32,11 +32,16 @@ const addFeaturesToDom = (featuresList, data) => {
 const addPhotosToDom = (photoContainer, data, card) => {
   const fragment = document.createDocumentFragment();
   const photo = card.querySelector('.popup__photo');
-  data.forEach(url => {
+  if (data) {
+    data.forEach(url => {
     const photoElement = photo.cloneNode(true);
     photoElement.src = url;
     fragment.appendChild(photoElement);
-  });
+    });
+  } else {
+    photo.classList.add('visually-hidden');
+  }
+
   photoContainer.replaceChildren();
   photoContainer.appendChild(fragment);
 }
