@@ -1,3 +1,4 @@
+import { createFetch } from './page-load.js';
 const form = document.querySelector('.ad-form');
 
 const housingType = form.querySelector('#type');
@@ -93,7 +94,26 @@ roomNumber.addEventListener('change', () => {
 console.log(roomNumber.options);
 
 const address = form.querySelector('#address');
-address.setAttribute('disabled', 'true');
+address.setAttribute('readonly', 'true');
+
+
+//SUBMIT
+
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  alert(field.value);
+  createFetch(
+    (data) => {
+      console.log(data);
+      form.reset();
+    },
+    (err) => {
+      console.log(err);
+    },
+  );
+
+
+});
 
 export { address };
 
