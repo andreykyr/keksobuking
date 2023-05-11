@@ -1,23 +1,20 @@
+
 const createMessage = (type) => {
-  if (type === 'success') {
-    const successMessage = document.querySelector('#success').content.querySelector('.success');
-    const main = document.querySelector('main');
-    main.appendChild(successMessage);
+  const main = document.querySelector('main');
+  let message = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
 
-    main.addEventListener('click', (evt) => {
-      main.removeChild(successMessage);
-    })
-
-  } else if (type === 'error') {
-    const errorMessage = document.querySelector('#error').content.querySelector('.error');
-    const main = document.querySelector('main');
-    main.appendChild(errorMessage);
-
-    main.addEventListener('click', (evt) => {
-      main.removeChild(errorMessage);
-    })
+  if (type === 'error') {
+    message = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
   }
 
-}
+  main.appendChild(message);
+  window.addEventListener('click', () => {
+    main.removeChild(message);
+  })
+  window.addEventListener('keydown', (evt) => {
+    if (evt.code === 'Escape') {
+      main.removeChild(message);
+    }
+  });
 
 export { createMessage };

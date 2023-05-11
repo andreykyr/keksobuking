@@ -107,7 +107,7 @@ const fetchFormData = createFetch(
   form,
   (data) => {
     console.log(data);
-    form.reset();
+    //form.reset();
     //вернуть красный маркер на стартовую позицию
     createMessage('success');
   },
