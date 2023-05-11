@@ -1,4 +1,8 @@
-import { createFetch } from './page-load.js';
+console.log('loaded form.js file');
+
+import { createFetch } from './fetch.js';
+import { createMessage } from './notice.js';
+
 const form = document.querySelector('.ad-form');
 
 const housingType = form.querySelector('#type');
@@ -99,20 +103,23 @@ address.setAttribute('readonly', 'true');
 
 //SUBMIT
 
+const fetchFormData = createFetch(
+  form,
+  (data) => {
+    console.log(data);
+    form.reset();
+    //вернуть красный маркер на стартовую позицию
+    createMessage('success');
+  },
+  (err) => {
+    createMessage('error');
+    console.log(err);
+  },
+);
+
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  alert(field.value);
-  createFetch(
-    (data) => {
-      console.log(data);
-      form.reset();
-    },
-    (err) => {
-      console.log(err);
-    },
-  );
-
-
+  fetchFormData();
 });
 
 export { address };

@@ -31,27 +31,7 @@ const enablePage = (firstClass, secondClass) => {
   console.log('enable');
 }
 
-const createFetch = (onSuccess, onError) => {
-  fetch(
-  'https://23.javascript.pages.academy/keksobooking',
-  {
-    method: 'POST',
-    credentials: 'same-origin',
-    body: new FormData(),
-  },
-)
-.then((response) => {
-  if (response.ok) {
-    return response.json;
-  }
-
-  throw new Error(`${response.status} ${response.statusText}`);
-})
-.then((json) => onSuccess(json))
-.catch((err) => onError(err))
-}
-
 disablePage('ad-form', 'map__filters');
 
-export {disablePage, enablePage, createFetch};
+export {disablePage, enablePage};
 

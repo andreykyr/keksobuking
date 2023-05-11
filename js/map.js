@@ -1,13 +1,13 @@
 console.log('loaded map.js file');
-//import { adsList } from './main.js';
 import { enablePage } from "./page-load.js";
 import { address } from './form.js';
-//import { simalarAds } from "./data.js";
 import { createOffer } from "./offer.js";
 
 const LAT = 35.60684;
 const LNG = 139.74554
 address.value = LAT + ', ' + LNG;
+
+// Create map
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -25,6 +25,9 @@ L.tileLayer(
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   },
 ).addTo(map);
+
+
+// Create main marker
 
 const mainPinIcon = L.icon({
   iconUrl: '../leaflet/img/main-pin.svg',
@@ -58,6 +61,8 @@ const pinIcon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
+
+// Create other markers
 
 const offerTemplate = document.querySelector('#card').content.querySelector('.popup');
 
