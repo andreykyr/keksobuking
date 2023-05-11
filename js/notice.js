@@ -16,5 +16,5 @@ const createMessage = (type) => {
       main.removeChild(message);
     }
   });
-
+}
 export { createMessage };
