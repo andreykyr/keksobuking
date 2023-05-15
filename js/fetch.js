@@ -15,6 +15,7 @@ fetch('https://23.javascript.pages.academy/keksobooking/data')
 // send form data
 
 const createFetch = (body, onSuccess, onError) => () => {
+  // добавить кастомные сообщения для разных ошибок
   fetch(
   'https://23.javascript.pages.academy/keksobooking',
   {

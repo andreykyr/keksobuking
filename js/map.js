@@ -93,4 +93,13 @@ const createMarkers = (ads) => {
   });
 }
 
-export {createMarkers};
+const returnMarkerToStart = () => {
+  mainMarker.setLatLng(
+    {
+      lat: LAT,
+      lng: LNG,
+    },
+  );
+}
+
+export {createMarkers, returnMarkerToStart};
