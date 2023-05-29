@@ -9,3 +9,4 @@ console.log('form!');
 import './fetch.js';
 console.log('fetch!');
 import './notice.js';
+import './filter-ads.js'

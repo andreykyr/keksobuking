@@ -1,12 +1,21 @@
-import { createMarkers } from './map.js';
+import { createMarkers, addMarkers } from './map.js';
+import { enablePage } from './page-load.js';
+import { filterAds } from './filter-ads.js';
 
 // Load data
 const AD_COUNT = 10;
 
+let newArray = [];
+
 fetch('https://23.javascript.pages.academy/keksobooking/data')
   .then((response) => response.json())
     .then((ads) => {
-      createMarkers(ads.slice(0, AD_COUNT));
+      addMarkers(
+        createMarkers(ads.slice(0, AD_COUNT))
+      );
+      enablePage('map__filters');
+      filterAds(ads.slice());
+
     })
     .catch((err) => {
       alert('Извините, мы не смогли загрузть данные о других объявлениях. ' + err);
@@ -36,4 +45,5 @@ const createFetch = (body, onSuccess, onError) => () => {
 .catch((err) => onError(err))
 }
 
-export {createFetch};
+
+export {createFetch, newArray};

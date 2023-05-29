@@ -11,7 +11,7 @@ address.value = LAT + ', ' + LNG;
 
 const map = L.map('map-canvas')
   .on('load', () => {
-    enablePage('ad-form', 'map__filters');
+    enablePage('ad-form');
     console.log('load');
   })
   .setView({
@@ -67,6 +67,8 @@ const pinIcon = L.icon({
 const offerTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 const createMarkers = (ads) => {
+  let markers = [];
+
   ads.forEach (ad => {
     const lat = ad.location.lat;
     const lng = ad.location.lng;
@@ -84,13 +86,27 @@ const createMarkers = (ads) => {
     createOffer(offerCard, ad);
 
     marker
-      .addTo(map)
+
       .bindPopup(offerCard,
         {
           keepInView: true,
         },
       );
+    markers.push(marker);
   });
+
+  return markers;
+};
+
+let markersGroup = L.layerGroup();
+
+const addMarkers = (markers) => {
+  markersGroup = L.layerGroup(markers);
+  markersGroup.addTo(map);
+}
+
+const removeMarkers = () => {
+  markersGroup.remove();
 }
 
 const returnMarkerToStart = () => {
@@ -102,4 +118,4 @@ const returnMarkerToStart = () => {
   );
 }
 
-export {createMarkers, returnMarkerToStart};
+export {createMarkers, returnMarkerToStart, addMarkers, removeMarkers};
