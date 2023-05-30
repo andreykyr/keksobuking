@@ -15,7 +15,6 @@ fetch('https://23.javascript.pages.academy/keksobooking/data')
       );
       enablePage('map__filters');
       filterAds(ads.slice());
-
     })
     .catch((err) => {
       alert('Извините, мы не смогли загрузть данные о других объявлениях. ' + err);
