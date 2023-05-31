@@ -72,7 +72,6 @@ const createMarkers = (ads) => {
   ads.forEach (ad => {
     const lat = ad.location.lat;
     const lng = ad.location.lng;
-    console.log(lat, lng);
     const marker = L.marker(
       {
         lat,
@@ -103,6 +102,7 @@ let markersGroup = L.layerGroup();
 const addMarkers = (markers) => {
   markersGroup = L.layerGroup(markers);
   markersGroup.addTo(map);
+  console.log(markers);
 }
 
 const removeMarkers = () => {

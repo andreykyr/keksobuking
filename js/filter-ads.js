@@ -7,7 +7,7 @@ const getArrayOfDuplicates = (array1, array2) => {
 
 const filterAds = (newArray) => {
   const form = document.querySelector('.map__filters');
-
+  const RENDER_DELAY = 5000;
   let housingTypeArray = newArray;
   let housingPriceArray = newArray;
   let housingRoomsArray = newArray;
@@ -23,7 +23,10 @@ const filterAds = (newArray) => {
   let featuresArray = [];
   let result = [];
 
-  const filterChangeHandler = (evt) => {
+
+
+const setMarkers = (cb) => {
+  form.addEventListener('change', (evt) => {
 
     const filterCurrentFeatures = (array, feature) => {
       console.log('фильтруем преимущества');
@@ -205,14 +208,25 @@ const filterAds = (newArray) => {
       result = brokerArray;
     };
 
-    //удалить маркеры
+    cb();
+  });
 
+
+
+};
+
+
+
+  const prepareMarkers = () => {
     let markers = createMarkers(result.slice(0, 10));
     removeMarkers();
     addMarkers(markers);
-  }
+    console.log('добавили маркеры');
+  };
 
-  form.addEventListener('change', filterChangeHandler);
+  setMarkers(_.debounce(() => prepareMarkers(), 1000,));
+
+
 };
 
 export { filterAds };
