@@ -211,8 +211,6 @@ const setMarkers = (cb) => {
     cb();
   });
 
-
-
 };
 
 
