@@ -17,7 +17,7 @@ const addImageUpload = (types, fileChooser, preview, insertMode) => {
         } else {
           preview.style.height = 'auto';
           preview.src = reader.result;
-        };
+        }
       });
 
       reader.readAsDataURL(file);

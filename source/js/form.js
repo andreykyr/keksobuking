@@ -1,5 +1,3 @@
-console.log('loaded form.js file');
-
 import { createFetch } from './fetch.js';
 import { createMessage } from './notice.js';
 import { returnMarkerToStart } from './map.js';
@@ -8,7 +6,7 @@ import {
   inputLengthValidation,
   housingPriceValidation,
   timeValidation,
-  capacityValidation,
+  capacityValidation
 } from './validation.js';
 
 import { addImageUpload } from './file-upload.js';
@@ -93,10 +91,10 @@ const setProperCapacity = () => {
     if (roomsNumber.value == 100) {
       guest.value == 0 ? guest.removeAttribute('disabled') : guest.setAttribute('disabled', 'true');
     } else if (roomsNumber.value < guest.value) {
-        guest.setAttribute('disabled', 'true');
+      guest.setAttribute('disabled', 'true');
     }
   }
-}
+};
 
 setProperCapacity();
 
@@ -107,7 +105,7 @@ roomsNumber.addEventListener('change', () => {
 
 guestsNumber.addEventListener('change', () => {
   capacityValidation(roomsNumber, guestsNumber);
-})
+});
 
 
 // ADDRESS
@@ -140,14 +138,10 @@ const fetchFormData = createFetch(
 );
 
 form.addEventListener('submit', (evt) => {
-  console.log('делаем сброс настроек по умолчанию');
   evt.preventDefault();
-  console.log('проводим валидацию формы');
   timeValidation(timeIn, timeOut);
   capacityValidation(roomsNumber, guestsNumber);
-  console.log('отправляем данные на сервер');
   if (form.reportValidity()) {
-  console.log('ведь у нас все хорошо');
     fetchFormData();
   }
 });

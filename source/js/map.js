@@ -11,7 +11,6 @@ address.value = LAT + ', ' + LNG;
 const map = L.map('map-canvas')
   .on('load', () => {
     enablePage('ad-form');
-    console.log('load');
   })
   .setView({
     lat: LAT,
@@ -52,7 +51,6 @@ let coordinates = {};
 mainMarker.on('moveend', (evt) => {
   coordinates = evt.target.getLatLng();
   address.value = (parseInt(coordinates.lat * 100000) / 100000) + ', ' + (parseInt(coordinates.lng * 100000) / 100000);
-  console.log(coordinates);
 });
 
 const pinIcon = L.icon({
@@ -101,7 +99,6 @@ let markersGroup = L.layerGroup();
 const addMarkers = (markers) => {
   markersGroup = L.layerGroup(markers);
   markersGroup.addTo(map);
-  console.log(markers);
 }
 
 const removeMarkers = () => {

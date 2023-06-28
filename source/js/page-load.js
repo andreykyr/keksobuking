@@ -1,4 +1,3 @@
-console.log('loaded pageLoad.js file');
 const disablePage = (itemClass) => {
   const item = document.querySelector(`.${itemClass}`);
 

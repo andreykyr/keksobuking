@@ -7,7 +7,7 @@ const getArrayOfDuplicates = (array1, array2) => {
 
 const filterAds = (newArray) => {
   const form = document.querySelector('.map__filters');
-  const RENDER_DELAY = 5000;
+  const RENDER_DELAY = 1000;
   let housingTypeArray = newArray;
   let housingPriceArray = newArray;
   let housingRoomsArray = newArray;
@@ -219,7 +219,7 @@ const filterAds = (newArray) => {
     addMarkers(markers);
   };
 
-  setMarkers(_.debounce(() => prepareMarkers(), 1000));
+  setMarkers(_.debounce(() => prepareMarkers(), RENDER_DELAY));
 
 
 };

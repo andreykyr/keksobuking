@@ -14,7 +14,6 @@ const createMessage = (type) => {
 
   const onKeyDownRemoveMessage = (evt) => {
     if (evt.code === 'Escape') {
-      console.log(evt.code);
       main.removeChild(message);
       window.removeEventListener('keydown', onKeyDownRemoveMessage);
       window.removeEventListener('click', onClickRemoveMessage);

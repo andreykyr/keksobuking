@@ -46,15 +46,15 @@ const capacityValidation = (roomsNumber, guestsNumber) => {
   guestsNumber.setCustomValidity('');
 
   if (room === 100 && guest !== 0) {
-    guestsNumber.setCustomValidity(`Для 100 комнат подходит только вариант "не для гостей"`);
+    guestsNumber.setCustomValidity('Для 100 комнат подходит только вариант "не для гостей"');
   }
 
   if ((room !== 100) && (guest !== 0) && (guest > room)) {
-    guestsNumber.setCustomValidity(`Число гостей не может превышать количество комнат`);
+    guestsNumber.setCustomValidity('Число гостей не может превышать количество комнат');
   }
 
   if ((room !== 100) && (guest === 0)) {
-    guestsNumber.setCustomValidity(`Вариант "не для гостей" подходит только для 100 комнат`);
+    guestsNumber.setCustomValidity('Вариант "не для гостей" подходит только для 100 комнат');
   }
 
   guestsNumber.reportValidity();

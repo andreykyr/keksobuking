@@ -1,4 +1,4 @@
-import { limitDecimalPlaces } from "./util.js";
+import { limitDecimalPlaces } from './util.js';
 
 const translateHousingType = (data) => {
   switch (data) {
@@ -16,8 +16,8 @@ const translateHousingType = (data) => {
 
     default:
       return ''
-    }
-}
+  }
+};
 
 const addFeaturesToDom = (featuresList, data) => {
   const fragment = document.createDocumentFragment();
@@ -36,9 +36,9 @@ const addPhotosToDom = (photoContainer, data, card) => {
   const photo = card.querySelector('.popup__photo');
   if (data) {
     data.forEach(url => {
-    const photoElement = photo.cloneNode(true);
-    photoElement.src = url;
-    fragment.appendChild(photoElement);
+      const photoElement = photo.cloneNode(true);
+      photoElement.src = url;
+      fragment.appendChild(photoElement);
     });
   } else {
     photo.classList.add('visually-hidden');
