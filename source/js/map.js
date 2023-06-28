@@ -1,7 +1,6 @@
-console.log('loaded map.js file');
-import { enablePage } from "./page-load.js";
+import { enablePage } from './page-load.js';
 import { address } from './form.js';
-import { createOffer } from "./offer.js";
+import { createOffer } from './offer.js';
 
 const LAT = 35.60684;
 const LNG = 139.74554

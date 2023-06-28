@@ -11,10 +11,21 @@ import {
   capacityValidation,
 } from './validation.js';
 
+import { addImageUpload } from './file-upload.js';
+
 const form = document.querySelector('.ad-form');
 
 const housingType = form.querySelector('#type');
 const housingPrice = form.querySelector('#price');
+
+//AVATAR
+
+const AVATAR_FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
+const avatarChooser = form.querySelector('.ad-form__field input[type=file]');
+const avatarPreview = form.querySelector('.ad-form-header__preview img');
+
+addImageUpload(AVATAR_FILE_TYPES, avatarChooser, avatarPreview, 'src');
 
 
 //HOUSING TYPE
@@ -104,6 +115,15 @@ guestsNumber.addEventListener('change', () => {
 const address = form.querySelector('#address');
 address.setAttribute('readonly', 'true');
 
+
+//HOUSING PHOTO
+
+const PHOTO_FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
+const photoChooser = form.querySelector('.ad-form__upload input[type=file]');
+const photoPreview = form.querySelector('.ad-form__photo');
+
+addImageUpload(PHOTO_FILE_TYPES, photoChooser, photoPreview, 'withBackground');
 
 //SUBMIT
 
