@@ -28,7 +28,7 @@ L.tileLayer(
 // Create main marker
 
 const mainPinIcon = L.icon({
-  iconUrl: '../leaflet/img/main-pin.svg',
+  iconUrl: 'leaflet/img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
